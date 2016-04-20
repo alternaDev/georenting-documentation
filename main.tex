@@ -23,8 +23,8 @@ Der Grundlegende Bestandteil des Spiels sind sogenannte Geofences (siehe auch Ab
 \chapter{Aufbau und Regeln des Spieles}
 \section{Grundlegender Aufbau}
 \subsection{Geofences}
-Die Geofences sind der zentrale Bestandteil des Spielkonzeptes. Ein Geofence besteht aus einem Koordinaten-Tupel (Latitude und Longitude) und einem Radius. Geofences markieren somit einen kreisförmigen Bereich auf der Karte. 
-Ein Geofence stellt einen Bereich dar, den der User sich im Tausch gegen In-Game Währung im Spiel erkaufen kann. Betreten nun andere User diesen Geofence (also das festgelegte kreisförmige Gebit), zahlen die besuchenden User dem besitzenden User automatisch einen In-Game Geldbetrag (die "Miete").\\
+Die Geofences sind der zentrale Bestandteil des Spielkonzeptes. Ein Geofence besteht aus einem Koordinaten-Tupel (Latitude und Longitude) einem Radius, sowie einem Multiplikator. Geofences markieren somit eine kreisförmigen Fläche auf der Karte. 
+Ein Geofence stellt einen Bereich dar, den der User sich im Tausch gegen In-Game Währung im Spiel erkaufen kann. Betreten nun andere User diesen Geofence (also das festgelegte kreisförmige Gebit), zahlen die besuchenden User dem besitzenden User automatisch einen In-Game Geldbetrag.\\
 
 Der Radius und die Miete sind abhängig von dem Upgrade-Stand des Geofences. Der Nutzer kann, wieder im Tausch gegen In-Game Währung, Upgrades für seine Geofences erwerben.\\
 
@@ -32,15 +32,44 @@ Es ist nicht möglich mehrere Geofences auf die selbe Stelle zu setzen. Ein Geof
 
 Geofences können nur auf beschränkte Zeit erworben werden. Nach dem Ablauf dieser Zeit wird der Geofence von der Karte entfernt und dem Benutzer wird der aktuelle Wert des Geofences gutgeschrieben. An der entsprechenden Stelle können dann neue Geofences platziert werden.
 \subsection{Upgrades}
-Upgrades ermöglichen es dem Benutzer einen bereits existierenden und sich im Besitz des Benutzers befindenden Geofence mit verschiedenen Möglichkeiten aufzurüsten um die Einnahmen durch diesen Geofence zu erhöhen.
+Upgrades ermöglichen es dem Benutzer einen bereits existierenden und sich im Besitz des Benutzers befindenden Geofence mit verschiedenen Möglichkeiten aufzurüsten um die Einnahmen durch diesen Geofence zu erhöhen. Hierzu wählt der Benutzer einen seiner Geofences aus und zahlt einen bestimmten Betrag, der sich aus dem Score berechnet. Dann wird ein entsprechendes Upgrade auf den Geofence angewendet. Upgrades steigern den aktuellen Wert eines Geofences.
 \subsubsection{Multiplikator-Upgrade}
-
+Jeder Geofence enthält wie bereits beschrieben einen Multiplikator. Dieser Multiplikator bestimmt den Preis, den ein anderer Benutzer zahlen muss, wenn er den Geofence eines Benutzers betritt. Höhere Multiplikatoren bedeuten hierbei einen höheren zu zahlenden Betrag. Die möglichen Multiplikatoren die ein Benutzer für seine Geofences auswählen kann, hängen von der Liga ab, in der er sich befindet.
 \subsubsection{Radius-Upgrade}
-
+Neben dem Multiplikator-Upgrade ist es außerdem möglich den Radius eines Geofences zu vergrößern. Der Prozess des Upgrades läuft dann ähnlich ab wie bei dem Multiplikator-Upgrade und die Fläche des upgegradedten Geofence vergrößert sich.
 \subsection{Homezones}
 Da die Position eines Benutzers kontinuierlich verfolgt wird, ergeben sich für den Benutzer problematische Situationen. So kann es theoretisch sein, dass er jedes mal wenn er etwa seinen Arbeitsplatz besucht den Geofence eines anderen Spielers betritt. Auch ein Wohnsitz des Benutzers ist natürlich von dieser Problematik betroffen. Um dieses Problem zu umgehen werden die sogenannten Homezones eingeführt. Sie ermöglichen dem Benutzer einen Punkt (Latitude und Longitude) als Homezone zu definieren und dadurch von Zahlungen die durch das Betreten von jeglichen Geofences, die den Punkt beinhalten befreit zu werden.
 
 \subsection{Cashflow}
+\subsubsection{Mögliche Cashflow Vorgänge}
+Durch die Spielregeln ergeben sich diverse Möglichkeiten für Zahlungen innerhalb der Spielökonomie. Folgende Tabelle liefert eine Übersicht.
+\begin{table}[h]
+     \centering
+     \begin{tabular}{l|p{8cm}|l}
+		\textbf{Aktion}	&	\textbf{Beschreibung}	&	\textbf{Richtung} \\
+       CreateUser          & Ein neuer Benutzer wird erstellt - Generierung von X Geocoins als Startguthaben des Users.  &   Bank $\rightarrow$ Benutzer       \\
+       \hline
+           DeleteUser        & Ein Benutzer wird entfernt - die Bank erhält sein gesamtes Geld.   &  Benutzer $\rightarrow$ Bank       \\
+       \hline
+       BuyGeofence       & Ein Benutzer kauft einen neuen Geofence.   &  Benutzer $\rightarrow$ Bank        \\
+       \hline
+       SellGeofence        & Ein Benutzer verkauft einen Geofence aus seinem Besitz an die Bank.   & Bank $\rightarrow$ Benutzer        \\
+       \hline
+       TradeGeofence        & Ein Benutzer verkauft einen Geofence an einen anderen Benutzer.   &     Benutzer $\rightarrow$ Benutzer    \\
+       \hline
+        VisitGeofence        & Ein Benutzer muss einem anderen User Geocoins zahlen, da er dessen Geofence besucht hat.   &   Benutzer $\rightarrow$ Benutzer      \\
+       \hline
+         GeofenceRevenue        & Ein Benutzer bekommt Zahlungen von einem Besucher seines Geofences.   &    Benutzer $\rightarrow$ Benutzer     \\
+       \hline
+         GeofenceUpgrade        & Ein Benutzer bezahlt das Upgrade eines seiner Geofences   &  Benutzer $\rightarrow$ Bank       \\
+       
+     \end{tabular}
+
+     \caption{Cashflow}
+     \label{tbl:beispieltabelle}
+     % Verweis im Text mittels \ref{tbl:beispieltabelle}
+
+   \end{table}
 \subsection{Das Ligensystem}
 
 \section{Interne Mechanismen}
