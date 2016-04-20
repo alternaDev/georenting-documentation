@@ -1,0 +1,77 @@
+\documentclass{scrreprt}
+\usepackage[utf8]{inputenc}
+
+\title{Georenting}
+\author{Julius Möller}
+\date{April 2016}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+
+\chapter{Einführung}
+\section{Allgemeines}
+Dieses Dokument beschreibt das Konzept hinter dem Reallife-Multiplayer-Online Spiel "Georenting". Es handelt sich bei Georenting um ein Smartphonespiel mit starkem Bezug zum lokalen Umfeld des Benutzers und seiner aktuellen Position. Er interagiert über eine Art soziales und wirtschaftliches Netzwerk mit anderen Benutzern in Echtzeit. Neben der Unterhaltung des Benutzers stehen bei diesem Projekt ebenfalls die Erforschung von Massenverhalten und einer durch die Entwickler konstruierten autonomen Spielökonomie. Die Analyse von Nutzerdaten soll ausdrücklich zu Forschungszwecken dienen und Daten nicht an Dritte weitergegeben werden (siehe auch Abschnitt Datenschutz).
+\section{Grundlagen des Spiels}
+Der Grundlegende Bestandteil des Spiels sind sogenannte Geofences (siehe auch Abschnitt Geofences). 
+\section{Über Uns}
+\section{Über dieses Dokument}
+
+\chapter{Aufbau und Regeln des Spieles}
+\section{Grundlegender Aufbau}
+\subsection{Geofences}
+Die Geofences sind der zentrale Bestandteil des Spielkonzeptes. Ein Geofence besteht aus einem Koordinaten-Tupel (Latitude und Longitude) und einem Radius. Geofences markieren somit einen kreisförmigen Bereich auf der Karte. 
+Ein Geofence stellt einen Bereich dar, den der User sich im Tausch gegen In-Game Währung im Spiel erkaufen kann. Betreten nun andere User diesen Geofence (also das festgelegte kreisförmige Gebit), zahlen die besuchenden User dem besitzenden User automatisch einen In-Game Geldbetrag (die "Miete").\\
+
+Der Radius und die Miete sind abhängig von dem Upgrade-Stand des Geofences. Der Nutzer kann, wieder im Tausch gegen In-Game Währung, Upgrades für seine Geofences erwerben.\\
+
+Es ist nicht möglich mehrere Geofences auf die selbe Stelle zu setzen. Ein Geofence soll sich analog zu einem Grundstück in der realen Welt Verhalten. Da es aber nicht möglich ist eine Fläche mit Kreisen fester Radien vollständig und disjunkt zu überdecken sind Überschneidungen von Geofences von bis zu XY Prozent der Flächen gestattet.\\  
+
+Geofences können nur auf beschränkte Zeit erworben werden. Nach dem Ablauf dieser Zeit wird der Geofence von der Karte entfernt und dem Benutzer wird der aktuelle Wert des Geofences gutgeschrieben. An der entsprechenden Stelle können dann neue Geofences platziert werden.
+\subsection{Upgrades}
+Upgrades ermöglichen es dem Benutzer einen bereits existierenden und sich im Besitz des Benutzers befindenden Geofence mit verschiedenen Möglichkeiten aufzurüsten um die Einnahmen durch diesen Geofence zu erhöhen.
+\subsubsection{Multiplikator-Upgrade}
+
+\subsubsection{Radius-Upgrade}
+
+\subsection{Homezones}
+Da die Position eines Benutzers kontinuierlich verfolgt wird, ergeben sich für den Benutzer problematische Situationen. So kann es theoretisch sein, dass er jedes mal wenn er etwa seinen Arbeitsplatz besucht den Geofence eines anderen Spielers betritt. Auch ein Wohnsitz des Benutzers ist natürlich von dieser Problematik betroffen. Um dieses Problem zu umgehen werden die sogenannten Homezones eingeführt. Sie ermöglichen dem Benutzer einen Punkt (Latitude und Longitude) als Homezone zu definieren und dadurch von Zahlungen die durch das Betreten von jeglichen Geofences, die den Punkt beinhalten befreit zu werden.
+
+\subsection{Cashflow}
+\subsection{Das Ligensystem}
+
+\section{Interne Mechanismen}
+\subsection{Scores}
+
+
+\section{Die User}
+\subsection{Neue User}
+\subsection{Besitz von Geofences}
+\subsection{Benutzerprofil}
+\subsection{Standortdaten}
+
+\section{Handel}
+
+\section{Denkbare Erweiterungsmöglichkeiten}
+
+\chapter{Umsetzung des Projektes}
+\section{Resourcen}
+\section{Implementierung}
+\section{Vermarktung}
+
+\chapter{Analyse der laufenden Instanz}
+\section{Benutzerwachstum}
+\section{Währung}
+\section{Analyse der Scores}
+\section{Spielstrategien}
+\section{Unterhaltungsfaktor und "Suchtpotential"}
+\section{Repräsentativität der Daten}
+
+\chapter{Anhang}
+\section{Anmerkungen}
+\subsection{Datenschutz}
+
+\end{document}
