@@ -20,6 +20,7 @@ authors.tex:
 
 $(TARGET): $(TARGET:%.pdf=%.tex) $(SRC)
 		$(LL) $<
+		$(LL) $<
 
 clean:
 	rm -rf main.aux main.log main.toc
