@@ -1,9 +1,14 @@
 \documentclass{scrreprt}
 \usepackage[utf8]{inputenc}
 
+\input{revision}
+\input{authors}
+
 \title{Georenting}
-\author{Julius Möller}
-\date{April 2016}
+\author{\gitAuthors}
+\date{\revisiondate\\
+  \texttt{\gitTag-\revision}}
+
 
 \begin{document}
 
@@ -16,19 +21,19 @@
 \section{Allgemeines}
 Dieses Dokument beschreibt das Konzept hinter dem Reallife-Multiplayer-Online Spiel "Georenting". Es handelt sich bei Georenting um ein Smartphonespiel mit starkem Bezug zum lokalen Umfeld des Benutzers und seiner aktuellen Position. Er interagiert über eine Art soziales und wirtschaftliches Netzwerk mit anderen Benutzern in Echtzeit. Neben der Unterhaltung des Benutzers stehen bei diesem Projekt ebenfalls die Erforschung von Massenverhalten und einer durch die Entwickler konstruierten autonomen Spielökonomie. Die Analyse von Nutzerdaten soll ausdrücklich zu Forschungszwecken dienen und Daten nicht an Dritte weitergegeben werden (siehe auch Abschnitt Datenschutz).
 \section{Grundlagen des Spiels}
-Der Grundlegende Bestandteil des Spiels sind sogenannte Geofences (siehe auch Abschnitt Geofences). 
+Der Grundlegende Bestandteil des Spiels sind sogenannte Geofences (siehe auch Abschnitt Geofences).
 \section{Über Uns}
 \section{Über dieses Dokument}
 
 \chapter{Aufbau und Regeln des Spieles}
 \section{Grundlegender Aufbau}
 \subsection{Geofences}
-Die Geofences sind der zentrale Bestandteil des Spielkonzeptes. Ein Geofence besteht aus einem Koordinaten-Tupel (Latitude und Longitude) einem Radius, sowie einem Multiplikator. Geofences markieren somit eine kreisförmigen Fläche auf der Karte. 
+Die Geofences sind der zentrale Bestandteil des Spielkonzeptes. Ein Geofence besteht aus einem Koordinaten-Tupel (Latitude und Longitude) einem Radius, sowie einem Multiplikator. Geofences markieren somit eine kreisförmigen Fläche auf der Karte.
 Ein Geofence stellt einen Bereich dar, den der User sich im Tausch gegen In-Game Währung im Spiel erkaufen kann. Betreten nun andere User diesen Geofence (also das festgelegte kreisförmige Gebit), zahlen die besuchenden User dem besitzenden User automatisch einen In-Game Geldbetrag.\\
 
 Der Radius und die Miete sind abhängig von dem Upgrade-Stand des Geofences. Der Nutzer kann, wieder im Tausch gegen In-Game Währung, Upgrades für seine Geofences erwerben.\\
 
-Es ist nicht möglich mehrere Geofences auf die selbe Stelle zu setzen. Ein Geofence soll sich analog zu einem Grundstück in der realen Welt Verhalten. Da es aber nicht möglich ist eine Fläche mit Kreisen fester Radien vollständig und disjunkt zu überdecken sind Überschneidungen von Geofences von bis zu XY Prozent der Flächen gestattet.\\  
+Es ist nicht möglich mehrere Geofences auf die selbe Stelle zu setzen. Ein Geofence soll sich analog zu einem Grundstück in der realen Welt Verhalten. Da es aber nicht möglich ist eine Fläche mit Kreisen fester Radien vollständig und disjunkt zu überdecken sind Überschneidungen von Geofences von bis zu XY Prozent der Flächen gestattet.\\
 
 Geofences können nur auf beschränkte Zeit erworben werden. Nach dem Ablauf dieser Zeit wird der Geofence von der Karte entfernt und dem Benutzer wird der aktuelle Wert des Geofences gutgeschrieben. An der entsprechenden Stelle können dann neue Geofences platziert werden.
 \subsection{Upgrades}
@@ -62,7 +67,7 @@ Durch die Spielregeln ergeben sich diverse Möglichkeiten für Zahlungen innerha
          GeofenceRevenue        & Ein Benutzer bekommt Zahlungen von einem Besucher seines Geofences.   &    Benutzer $\rightarrow$ Benutzer     \\
        \hline
          GeofenceUpgrade        & Ein Benutzer bezahlt das Upgrade eines seiner Geofences   &  Benutzer $\rightarrow$ Bank       \\
-       
+
      \end{tabular}
 
      \caption{Cashflow}
