@@ -1,5 +1,6 @@
 \documentclass{scrreprt}
 \usepackage[utf8]{inputenc}
+\usepackage{amssymb}
 
 \input{revision}
 \input{authors}
@@ -81,7 +82,17 @@ Es ist offensichtlich, dass ein Neueinstiger einem Spieler, der das Spiel schon 
 
 \section{Interne Mechanismen}
 \subsection{Scores}
-
+Die Attraktivität eines Ortes für die Erstellung eines Geofences hängt vom täglichen Personenaufkommen und somit von der Position des Ortes ab. Beliebte Orte mit höheren Einnahmen durch höheres Personenaufkommen sollen für den Benutzer nicht so einfach zu erhalten sein wie andere Orte. Deswegen soll ein lokaler Score eingeführt werden, der abhängig vom Ort höhere Preise für die Erstellung oder Aufrüstung eines Geofences verursacht. Der Score wird aus den VisitGeofence-actions berechnet, die den besagten Ort betreffen. 
+\subsubsection{Geohashes}
+Um Bereichen auf der Karte einen bestimmten Score zuzuordnen muss eine disjunkte Einteilung der Karte vorgenommen werden. Dies erfolgt über sogenannte Geohashes. Die Karte wird in eine vorher festgelegte Anzahl von rechteckigen Bereichen überdeckt. Sei $M$ die Menge dieser Bereiche. Dann ist \[ M = \{(a,b,c,d) | a,b,c,d \in [-180,180], (a,b,c,d)  'disjunktes' Rechteck\} \] Hierbei bezeichnen die Tupel $(a,b)$ und $(c,d)$ die Koordinaten der linken unteren und der rechten oberen Ecke eines rechteckigen Bereiches. Nun existiert die Abbildung \[ hash: M \rightarrow \mathbb{N}\] wobei die Zahlen aus dem Wertebereich in Hexadezimaldarstellung gespeichert werden.\\ Bemerkung: $hash$ ist injektiv. Für die Menge der Koordinaten auf der Karte ist \[(lat1,lon1) =_{pos} (lat2,lon2) :\Leftrightarrow\] \[ \exists (a,b,c,d) \in M: lat1, lat2 \ge a \land lat1,lat2 \le c \land  lon1, lon2 \ge b \land lon1,lon2 \le d\] eine Äquivalenzrelation.
+Wir können nun jede Koordinate kanonisch auf ihre Äquivalenzklasse abbilden. Diese bezeichnen wir mit $[a,b,c,d]$. Für jede Koordinate existiert also solch ein besagtes $(a,b,c,d)$, was wir mit $hash$ nach $\mathbb{N}$ abbilden können. Somit können wir jeder Koordinate einen Geohash zuordnen. 
+Die Präzision des Geohashalgorithmus (Fläche der (a,b,c,d)) wird auf Stufe 6 festgelegt. Siehe dazu auch: (https://github.com/danieldkim/geomodel). 
+\subsubsection{Berechnung des Scores}
+Gegeben seien: ein Bereich $[a,b,c,d]$, die aktuelle Zeit $t_{now}$, die Zeit $t_{lv_{ [a,b,c,d]}}$ des letzten Besuches auf $[a,b,c,d]$ und  \[t_{avg} = \frac{1}{\#M} * \sum_{[x1,y1,x2,y2] \in M} t_{now} - t_{lv_{ [x1,y1,x2,y2]}}\] Der neue Score von $[a,b,c,d]$ berechnet sich wie folgt:
+\[score_{neu}[a,b,c,d] = max\{0, score_{alt}[a,b,c,d] + ln(\frac{t_{avg}}{t_{now}-t_{lv_{ [a,b,c,d]}}})\}\]
+\subsection{Erstellung eines Geofences}
+Bei der Erstellung eines Geofences G soll nun also aus dem Score des zugehörigen Bereiches der Preis berechnet werden. Ist der Score 0 (bisher keine Aktivität oder minimale Aktivität) so soll ein Geofence der ersten Ausbaustufe 100 GC kosten. Sei nun $S := score [a,b,c,d]$. Dann berechnet sich der Preis $P$ der ersten Ausbaustufe durch \[P = e^S * 100 GC\] für $G_{pos} \in [a,b,c,d]$.
+ 
 
 \section{Die User}
 \subsection{Neue User}
