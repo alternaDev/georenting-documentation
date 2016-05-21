@@ -91,7 +91,7 @@ Die Präzision des Geohashalgorithmus (Fläche der (a,b,c,d)) wird auf Stufe 6 f
 Gegeben seien: ein Bereich $[a,b,c,d]$, die aktuelle Zeit $t_{now}$, die Zeit $t_{lv_{ [a,b,c,d]}}$ des letzten Besuches auf $[a,b,c,d]$ und  \[t_{avg} = \frac{1}{\#M} * \sum_{[x1,y1,x2,y2] \in M} t_{now} - t_{lv_{ [x1,y1,x2,y2]}}\] Der neue Score von $[a,b,c,d]$ berechnet sich wie folgt:
 \[score_{neu}[a,b,c,d] = max\{0, score_{alt}[a,b,c,d] + ln(\frac{t_{avg}}{t_{now}-t_{lv_{ [a,b,c,d]}}})\}\]
 \subsection{Erstellung eines Geofences}
-Bei der Erstellung eines Geofences G soll nun also aus dem Score des zugehörigen Bereiches der Preis berechnet werden. Ist der Score 0 (bisher keine Aktivität oder minimale Aktivität) so soll ein Geofence der ersten Ausbaustufe 100 GC kosten. Sei nun $S := score [a,b,c,d]$. Dann berechnet sich der Preis $P$ der ersten Ausbaustufe durch \[P = e^S * 100 GC\] für $G_{pos} \in [a,b,c,d]$.
+Bei der Erstellung eines Geofences G soll nun also aus dem Score des zugehörigen Bereiches der Preis berechnet werden. Ist der Score 0 (bisher keine Aktivität oder minimale Aktivität) so soll ein Geofence der ersten Ausbaustufe 100 GC kosten. Sei nun $S := score [a,b,c,d]$. Dann berechnet sich der Preis $P$ der ersten Ausbaustufe durch \[P = (S+1)^{\frac{1}{p}} * 100 GC\] für $G_{pos} \in [a,b,c,d]$. Hierbei ist p die sogenannte "Peda Bs magical Georenting-Konstante", welche im Verlauf des Projektes ermittelt werden soll.
  
 
 \section{Die User}
